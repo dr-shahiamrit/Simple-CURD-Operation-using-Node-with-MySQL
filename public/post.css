@@ -1,0 +1,16 @@
+form {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 40px 80px;
+        font-size: 18px;
+        text-align: left;
+}
+
+label {
+    padding: 20px;
+}
+
+input[type = "text"], input[type="submit"], button {
+    padding: 10px;
+    border-radius: 10px;
+}   

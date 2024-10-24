@@ -1,0 +1,53 @@
+<%- include ('header.html') -%>
+
+<link rel="stylesheet" href="style.css">
+<h2 style="text-align: center;">Simple CURD Operation using Node with MySQL</h2>
+<%- include ('post_insert.html') -%>
+
+<h3 style="text-align: center;">Show Data</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(function(user){ %>
+        <tr>
+            <td onclick="window.location.href='/<%= user.id %>'"><%= user.name %></td>
+            <td><%= user.age %></td>
+            <td><%= user.address %></td>
+            <td>
+                <button onclick="deleteUser('<%= user.id %>')">Delete</button>
+            </td>
+
+            <td>
+                <button onclick="window.location.href='/edit/<%= user.id %>'">Edit</button>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+<script>
+    function deleteUser(userId) {
+        fetch(`/${userId}`, {
+            method: 'DELETE'
+        }).then(response => {
+            if(response.ok) {
+                // Reload the page our udpate the UI as necessary
+                window.location.reload()
+            } else {
+                alert('Failed to delete user')
+            }
+        }).catch(err => console.error('Error: ', err))
+    }
+
+
+</script>
+
+
+<%- include ('footer.html') -%>
